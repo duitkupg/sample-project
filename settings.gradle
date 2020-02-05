@@ -1,0 +1,2 @@
+include ':app', ':duitku-sdk-1.0.0'
+rootProject.name='LastSDKTesting'

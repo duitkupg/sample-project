@@ -102,7 +102,7 @@ public class MainActivity extends DuitkuClient {
         int nominal = Integer.parseInt(amount.getText().toString());
         run();
         //set base url merchant
-        BaseKitDuitku.setBaseUrlApiDuitku("https://bambangm.com/duitku/api/live/sandbox/");
+        BaseKitDuitku.setBaseUrlApiDuitku("https://merchant.com/duitku/api/");
         BaseKitDuitku.setUrlRequestTransaction("requestTransaction.php");
         BaseKitDuitku.setUrlCheckTransaction("checkTransaction.php");
         BaseKitDuitku.setUrlListPayment("listPayment.php");
@@ -114,8 +114,8 @@ public class MainActivity extends DuitkuClient {
         duitku.setMerchantUserInfo(""); //optional
         duitku.setCustomerVaName("");
         duitku.setExpiryPeriod("10");
-        duitku.setCallbackUrl("http://");
-        duitku.setReturnUrl("http://");
+        duitku.setCallbackUrl("http://merchant.com/callbackUrl");
+        duitku.setReturnUrl("http://merchant.com/returnUrl");
 
         //set item details
         ItemDetails itemDetails = new ItemDetails(10000,2,"shoes");

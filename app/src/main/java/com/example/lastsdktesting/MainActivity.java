@@ -95,10 +95,8 @@ public class MainActivity extends DuitkuClient {
     }
     private void settingMerchant(){
         //set false if callback from duitku
-        callbackKit.setCallbackFromMerchant(true);
-
-        //set base url merchant
-        callbackKit.setCallbackFromMerchant(true);
+        callbackKit.setCallbackFromMerchant(false);
+        
         int nominal = Integer.parseInt(amount.getText().toString());
         run();
         //set base url merchant

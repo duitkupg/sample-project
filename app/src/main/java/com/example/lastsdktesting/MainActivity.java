@@ -90,21 +90,21 @@ public class MainActivity extends DuitkuClient {
     protected void onResume() {
         super.onResume();
 
-        run();
+        run(MainActivity.this);
 
     }
     private void settingMerchant(){
         //set false if callback from duitku
         callbackKit.setCallbackFromMerchant(false);
-        
+
         int nominal = Integer.parseInt(amount.getText().toString());
-        run();
+        run(MainActivity.this);
         //set base url merchant
-        BaseKitDuitku.setBaseUrlApiDuitku("https://merchant.com/duitku/api/");
+        BaseKitDuitku.setBaseUrlApiDuitku("https://bambangm.com/duitku/api/live/sandbox_test/");
         BaseKitDuitku.setUrlRequestTransaction("requestTransaction.php");
         BaseKitDuitku.setUrlCheckTransaction("checkTransaction.php");
         BaseKitDuitku.setUrlListPayment("listPayment.php");
-        duitku.setPaymentAmount(nominal);
+
         duitku.setProductDetails(detail.getText().toString());
         duitku.setEmail(orderId.getText().toString());
         duitku.setPhoneNumber(phone.getText().toString());
@@ -115,10 +115,29 @@ public class MainActivity extends DuitkuClient {
         duitku.setCallbackUrl("http://merchant.com/callbackUrl");
         duitku.setReturnUrl("http://merchant.com/returnUrl");
 
+        //customer detail
+        duitku.setFirstName("John");//optional //mandatory if indodana
+        duitku.setLastName("Doe");//optional //mandatory if indodana
+
+        //address
+        duitku.setAddress("Jl. Kembangan Raya");//optional //mandatory if indodana
+        duitku.setCity("Jakarta");//optional //mandatory if indodana
+        duitku.setPostalCode("11530");//optional //mandatory if indodana
+        duitku.setCountryCode("ID");//optional //mandatory if indodana
+
+
         //set item details
-        ItemDetails itemDetails = new ItemDetails(10000,2,"shoes");
+        ItemDetails itemDetails = new ItemDetails(nominal,2,"shoes");
         ArrayList<ItemDetails> arrayList = new  ArrayList<ItemDetails> ();
         arrayList.add(itemDetails);
         duitku.setItemDetails(arrayList);
+
+        int paymentAmount = 0 ;
+        for(ItemDetails item : arrayList) {
+            System.out.println(item.getPrice());
+            paymentAmount = paymentAmount + item.getPrice() ;
+        }
+
+        duitku.setPaymentAmount(paymentAmount);
     }
 }

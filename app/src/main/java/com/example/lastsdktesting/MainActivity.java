@@ -100,11 +100,12 @@ public class MainActivity extends DuitkuClient {
         int nominal = Integer.parseInt(amount.getText().toString());
         run(MainActivity.this);
         //set base url merchant
-        BaseKitDuitku.setBaseUrlApiDuitku("https://bambangm.com/duitku/api/live/sandbox_test/");
+        BaseKitDuitku.setBaseUrlApiDuitku("https://merchantsite.com/api/");
         BaseKitDuitku.setUrlRequestTransaction("requestTransaction.php");
         BaseKitDuitku.setUrlCheckTransaction("checkTransaction.php");
         BaseKitDuitku.setUrlListPayment("listPayment.php");
 
+        duitku.setPaymentAmount(nominal);
         duitku.setProductDetails(detail.getText().toString());
         duitku.setEmail(orderId.getText().toString());
         duitku.setPhoneNumber(phone.getText().toString());
@@ -112,8 +113,8 @@ public class MainActivity extends DuitkuClient {
         duitku.setMerchantUserInfo(""); //optional
         duitku.setCustomerVaName("");
         duitku.setExpiryPeriod("10");
-        duitku.setCallbackUrl("http://merchant.com/callbackUrl");
-        duitku.setReturnUrl("http://merchant.com/returnUrl");
+        duitku.setCallbackUrl("http://merchantsite.com/callbackUrl");
+        duitku.setReturnUrl("http://merchantsite.com/returnUrl");
 
         //customer detail
         duitku.setFirstName("John");//optional //mandatory if indodana
@@ -132,12 +133,6 @@ public class MainActivity extends DuitkuClient {
         arrayList.add(itemDetails);
         duitku.setItemDetails(arrayList);
 
-        int paymentAmount = 0 ;
-        for(ItemDetails item : arrayList) {
-            System.out.println(item.getPrice());
-            paymentAmount = paymentAmount + item.getPrice() ;
-        }
 
-        duitku.setPaymentAmount(paymentAmount);
     }
 }

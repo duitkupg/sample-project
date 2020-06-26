@@ -35,5 +35,5 @@ dependencies {
 
 
     //duitku sdk
-    implementation 'com.duitku:duitku-android-sdk:1.0.1'
+    implementation 'com.duitku:duitku-android-sdk:1.0.2-beta-1'
 }
